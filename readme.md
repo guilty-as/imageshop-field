@@ -40,8 +40,24 @@ php craft install/plugin craft-imageshop-field
   
 ## Templating:
 
+
+### Plain and simple
+
+```twig
+<img src="{{ entry.imageshopField.url }}" alt="{{ entry.imageshopField.filename }}">
+```
+
 ### Using Imager
 
+## Single size
+
+```twig
+{% set image = craft.imager.transformImage(entry.imageshopField.url, { width: 400 }) %}
+<img src="{{ image.url }}">
+```
+
+
+## Responsive images using srcset
 ```twig
 <h2>Image Single</h2>
 {% set transforms = craft.imager.transformImage(
@@ -54,7 +70,9 @@ php craft install/plugin craft-imageshop-field
 ```
  
  
-### Available variables
+ 
+ 
+### Available attributes
 
 ```imageshopField``` is the name of the field in these examples.
 
