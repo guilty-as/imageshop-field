@@ -1,0 +1,33 @@
+{% import "_includes/forms" as forms %}
+
+
+{{ forms.textField({
+    label: 'Imageshop Token',
+    instructions: 'Enter your imageshop token',
+    name: 'token',
+    value: field['token']}) }}
+
+{{ forms.textField({
+    label: 'Input text',
+    instructions: 'Text on the selection button',
+    name: 'buttonText',
+    value: field['buttonText']}) }}
+
+{{ forms.lightswitchField({
+    label: 'Show Crop Dialogue?',
+    instructions: "Indicates whether the size dialogue should be shown.",
+    name: 'showCropDialogue',
+    on: field['showCropDialogue']}) }}
+
+{{ forms.lightswitchField({
+    label: 'Show Size Dialogue?',
+    instructions: 'Indicates whether the crop dialogue should be shown',
+    name: 'showSizeDialogue',
+    on: field['showSizeDialogue']}) }}
+
+{{ forms.selectField({
+    label: 'Culture/Language',
+    instructions: 'Which language should be displayed in the imageshop popup?',
+    name: 'culture',
+    options: cultures
+    on: field['culture']}) }}
