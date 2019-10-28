@@ -55,7 +55,7 @@ class ImageShopField extends Field
 
         $view = Craft::$app->getView();
         $view->registerAssetBundle(ImageshopAssetBundle::class);
-        $view->registerJs("new Craft.ImageshopField('fields-imageshop-{$this->id}', '{$url}');");
+        $view->registerJs("new Craft.ImageshopField('imageshop-{$this->id}', '{$url}');");
 
 
         return $view->renderTemplate('craft-imageshop-field/input', [

@@ -14,7 +14,7 @@ class ImageshopSelection extends BaseObject implements Serializable
      */
     protected $_json;
 
-    public function __construct(string $json, array $config = [])
+    public function __construct($json, $config = [])
     {
         $this->_json = json_decode($json, true);
         parent::__construct($config);

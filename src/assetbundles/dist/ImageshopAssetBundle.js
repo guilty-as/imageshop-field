@@ -9,24 +9,28 @@
             $removeButton: null,
             $url: null,
             $popupWindow: null,
+            $open: false,
 
             init: function (containerId, url) {
 
-                this.$container = $('#' + containerId);
+                this.$container = $('[data-id="' + containerId + '"]');
                 this.$url = url;
-                this.$trigger = $(".imageshop-trigger", this.$container);
-                this.$hiddenInput = $(".imageshop-value", this.$container);
-                this.$previewInput = $(".imageshop-preview", this.$container);
-                this.$removeButton = $(".imageshop-remove", this.$container);
+                this.$trigger = this.$container.find(".imageshop-trigger");
+                this.$hiddenInput = this.$container.find(".imageshop-value");
+                this.$previewInput = this.$container.find(".imageshop-preview");
+                this.$removeButton = this.$container.find(".imageshop-remove");
 
                 this.addListener(this.$trigger, "click", "showPopup");
                 this.addListener(this.$removeButton, "click", "removeSelection");
 
 
                 window.addEventListener("message", function (event) {
-                    this.$hiddenInput.val(event.data);
-                    this.$popupWindow.close();
-                    this.updatePreview(event.data);
+                    if (this.$open) {
+                        this.$open = false;
+                        this.$hiddenInput.val(event.data);
+                        this.$popupWindow.close();
+                        this.updatePreview(event.data);
+                    }
                 }.bind(this), false);
             },
 
@@ -44,7 +48,7 @@
 
             showPopup: function (ev) {
                 ev.preventDefault();
-
+                this.$open = true;
                 // Sensible defaults
                 var width = 950;
                 var height = 650;
@@ -57,7 +61,6 @@
 
 
             updatePreview: function (data) {
-
                 var url = JSON.parse(data).image.file;
 
                 this.removePreview();
