@@ -57,16 +57,35 @@ php craft install/plugin imageshop-field
 ```
 
 
-## Responsive images using srcset
+## Multiple sizes
 ```twig
-<h2>Image Single</h2>
 {% set transforms = craft.imager.transformImage(
     entry.imageshopField.url,
-    [{ width: 200 }, { width: 800 }]
-) %}
+    [
+        { width: 200 },
+        { width: 800 },
+        { width: 1200 },
+        { width: 1920 }
+    ]
+    ) %}
 
-<img src="{{ transforms.0.url }}" width="{{  transforms.0.width }}" style="width: auto!important;">
-<img src="{{ transforms.1.url }}" width="{{  transforms.1.width }}" style="width: auto!important;">
+{% for image in transforms %}
+    <img src="{{ image.url }}" width="{{ image.width }}" style="width: auto;margin: 20px;">
+{% endfor %}
+```
+
+
+## Responsive images with srcset
+
+```twig
+{% set transformedImages = craft.imager.transformImage(image,[
+        { width: 1920, jpegQuality: 90, webpQuality: 90 },
+        { width: 1200, jpegQuality: 75, webpQuality: 75 },
+        { width: 800, jpegQuality: 75, webpQuality: 75 },
+        { width: 400, jpegQuality: 65, webpQuality: 65 },
+    ]) %}
+
+<img srcset="{{ craft.imager.srcset(transformedImages) }}">
 ```
  
  
