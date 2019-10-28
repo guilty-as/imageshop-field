@@ -11,9 +11,6 @@ use yii\base\Event;
 
 class Plugin extends BasePlugin
 {
-    public $hasCpSettings = true;
-
-
     public function init()
     {
         parent::init();
@@ -24,18 +21,5 @@ class Plugin extends BasePlugin
             function (RegisterComponentTypesEvent $event) {
                 $event->types[] = ImageShopField::class;
             });
-    }
-
-    protected function createSettingsModel()
-    {
-        return new Settings();
-    }
-
-
-    protected function settingsHtml()
-    {
-        return \Craft::$app->getView()->renderTemplate('craft-imageshop-field/settings', [
-            'settings' => $this->getSettings(),
-        ]);
     }
 }

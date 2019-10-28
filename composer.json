@@ -1,12 +1,12 @@
 {
-    "name": "guilty/craft-imageshop-field",
+    "name": "guilty/imageshop-field",
     "description": "Integrates the Imageshop file picker into Craft CMS",
     "version": "1.0.0",
     "type": "craft-plugin",
     "keywords": [
-        "hubspot",
-        "ecommerce",
-        "bridge",
+        "imageshop",
+        "bildebank",
+        "images",
         "craftcms"
     ],
     "license": "MIT",
@@ -18,23 +18,22 @@
     ],
     "support": {
         "email": "support@guilty.no",
-        "issues": "https://github.com/guilty-as/craft-imageshop-field/issues?state=open",
-        "source": "https://github.com/guilty-as/craft-imageshop-field",
-        "docs": "https://github.com/guilty-as/craft-imageshop-field/blob/master/README.md"
+        "issues": "https://github.com/guilty-as/imageshop-field/issues?state=open",
+        "source": "https://github.com/guilty-as/imageshop-field",
+        "docs": "https://github.com/guilty-as/imageshop-field/blob/master/README.md"
     },
     "require": {
-        "craftcms/cms": "^3.1.0",
-        "ryanwinchester/hubspot-php": "~1.0"
+        "craftcms/cms": "^3.1.0"
     },
     "autoload": {
         "psr-4": {
-            "Guilty\\Imageshop  \\": "src/"
+            "Guilty\\Imageshop\\": "src/"
         }
     },
     "extra": {
-        "handle": "craft-imageshop-field",
+        "handle": "imageshop-field",
         "name": "Imageshop",
         "class": "Guilty\\Imageshop\\Plugin",
-        "documentationUrl": "https://github.com/guilty-as/craft-imageshop-field/blob/master/README.md"
+        "documentationUrl": "https://github.com/guilty-as/imageshop-field/blob/master/README.md"
     }
 }

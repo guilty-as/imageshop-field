@@ -22,7 +22,7 @@ cd /path/to/project
 2. Then tell Composer to load the plugin:
 
 ```
-composer require guilty/craft-imageshop-field
+composer require guilty/imageshop-field
 ```
         
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for 'Imageshop'.
@@ -30,7 +30,7 @@ composer require guilty/craft-imageshop-field
 OR do it via the command line
 
 ```
-php craft install/plugin craft-imageshop-field
+php craft install/plugin imageshop-field
 ```
          
 

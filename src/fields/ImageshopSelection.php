@@ -5,10 +5,7 @@ namespace Guilty\Imageshop\Fields;
 
 
 use craft\base\Serializable;
-use Google\Cloud\Spanner\V1\PartialResultSet;
-use Imgix\UrlHelper;
 use yii\base\BaseObject;
-use yii\helpers\FileHelper;
 
 class ImageshopSelection extends BaseObject implements Serializable
 {
