@@ -4,10 +4,9 @@
 namespace Guilty\Imageshop\Fields;
 
 
-use craft\base\Serializable;
 use yii\base\BaseObject;
 
-class ImageshopSelection extends BaseObject implements Serializable
+class ImageshopSelection extends BaseObject
 {
     /**
      * @var string
@@ -26,17 +25,6 @@ class ImageshopSelection extends BaseObject implements Serializable
         parent::__construct($config);
     }
 
-    /**
-     * Returns the object’s serialized value.
-     *
-     * @return mixed The serialized value
-     */
-    public function serialize()
-    {
-        return $this->_json;
-    }
-
-
     public function getImage()
     {
         return $this->_json["image"]["file"];
@@ -52,75 +40,47 @@ class ImageshopSelection extends BaseObject implements Serializable
         return json_encode($this->_json);
     }
 
+    public function getJson()
+    {
+        return $this->_json;
+    }
+
     public function getDocumentId()
     {
         return $this->_json["documentId"];
     }
 
-    public function getTags($lang)
+    protected function getLang($lang)
     {
         if (!in_array($lang, ["no", "en", "sv"])) {
             $lang = "no";
         }
 
+        return $lang;
+    }
 
-        if (!isset($this->_json["text"][$lang])) {
-            return "";
-        }
-
-        return explode(" ", $this->_json["text"][$lang]["tags"]);
-
+    public function getTags($lang)
+    {
+        return explode(" ", $this->_json["text"][$this->getLang($lang)]["tags"]);
     }
 
     public function getTitle($lang)
     {
-        if (!in_array($lang, ["no", "en", "sv"])) {
-            $lang = "no";
-        }
-
-        if (!isset($this->_json["text"][$lang])) {
-            return "";
-        }
-
-        return $this->_json["text"][$lang]["title"];
+        return $this->_json["text"][$this->getLang($lang)]["title"];
     }
 
     public function getDescription($lang)
     {
-        if (!in_array($lang, ["no", "en", "sv"])) {
-            $lang = "no";
-        }
-
-        if (!isset($this->_json["text"][$lang])) {
-            return "";
-        }
-
-        return $this->_json["text"][$lang]["description"];
+        return $this->_json["text"][$this->getLang($lang)]["description"];
     }
 
     public function getRights($lang)
     {
-        if (!in_array($lang, ["no", "en", "sv"])) {
-            $lang = "no";
-        }
-
-        if (!isset($this->_json["text"][$lang])) {
-            return "";
-        }
-
-        return $this->_json["text"][$lang]["rights"];
+        return $this->_json["text"][$this->getLang($lang)]["rights"];
     }
 
     public function getCredits($lang)
     {
-        if (!in_array($lang, ["no", "en", "sv"])) {
-            $lang = "no";
-        }
-
-        if (!isset($this->_json["text"][$lang])) {
-            return "";
-        }
-
-        return $this->_json["text"][$lang]["credits"];
+        return $this->_json["text"][$this->getLang($lang)]["credits"];
     }
 }
