@@ -5,7 +5,10 @@ namespace Guilty\Imageshop\Fields;
 
 
 use craft\base\Serializable;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Imgix\UrlHelper;
 use yii\base\BaseObject;
+use yii\helpers\FileHelper;
 
 class ImageshopSelection extends BaseObject implements Serializable
 {
@@ -46,7 +49,22 @@ class ImageshopSelection extends BaseObject implements Serializable
     public function getImage()
     {
         if (isset($this->_json["image"])) {
-            return $this->_json["image"]["file"];
+            $base = $this->_json["image"]["file"];
+            $filename = $this->getFilename();
+
+            return $base . "/" . $filename;
+        }
+
+        return null;
+    }
+
+    public function getFilename()
+    {
+        if (isset($this->_json["image"])) {
+            $url = $this->_json["image"]["file"];
+            $path = parse_url($url, PHP_URL_PATH);
+
+            return trim($path, "/") . ".jpg";
         }
 
         return null;
@@ -144,5 +162,11 @@ class ImageshopSelection extends BaseObject implements Serializable
     public function serialize()
     {
         return json_encode($this->_json);
+    }
+
+
+    public function __toString()
+    {
+        return $this->getUrl() ?? "";
     }
 }
