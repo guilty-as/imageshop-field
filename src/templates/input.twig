@@ -5,11 +5,11 @@
 
     <div class="mb-2">
         <div class="imageshop-preview element removable large hasthum">
-            {% if value %}
-                <img src="{{ value.image.file }}" width="100">
+            {% if value.image %}
+                <img src="{{ value.image }}" width="100">
 
                 <div class="imageshop-label">
-                    <div class="label"><span class="title">{{ value.image.file }}</span></div>
+                    <div class="label"><span class="title">{{ value.image }}</span></div>
                     <a class="delete icon imageshop-remove" title="Remove"></a>
                 </div>
             {% endif %}
@@ -17,5 +17,5 @@
     </div>
 
     <button type="button" class="imageshop-trigger add icon dashed btn">{{ field.buttonText }}</button>
-    <input type="text" class="imageshop-value" name="{{ name }}" value="{{ value | json_encode }}">
+    <input type="text" class="imageshop-value" name="{{ name }}" value="{{ value.json | json_encode }}">
 </div>

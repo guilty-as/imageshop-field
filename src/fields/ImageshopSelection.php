@@ -4,35 +4,61 @@
 namespace Guilty\Imageshop\Fields;
 
 
+use craft\base\Serializable;
 use yii\base\BaseObject;
 
-class ImageshopSelection extends BaseObject
+class ImageshopSelection extends BaseObject implements Serializable
 {
     /**
-     * @var string
+     * @var array
      */
     protected $_json;
 
-    /**
-     * Constructor.
-     *
-     * @param string $hex hex color value, beginning with `#`. (Shorthand is not supported, e.g. `#f00`.)
-     * @param array $config name-value pairs that will be used to initialize the object properties
-     */
     public function __construct(string $json, array $config = [])
     {
         $this->_json = json_decode($json, true);
         parent::__construct($config);
     }
 
+    public function getWidth()
+    {
+        if (isset($this->_json["image"])) {
+            return $this->_json["image"]["width"];
+        }
+
+        return null;
+    }
+
+    public function getHeight()
+    {
+        if (isset($this->_json["image"])) {
+            return $this->_json["image"]["height"];
+        }
+
+        return null;
+    }
+
+    public function getUrl()
+    {
+        return $this->getImage();
+    }
+
     public function getImage()
     {
-        return $this->_json["image"]["file"];
+        if (isset($this->_json["image"])) {
+            return $this->_json["image"]["file"];
+        }
+
+        return null;
     }
 
     public function getCode()
     {
-        return $this->_json["code"];
+        if (isset($this->_json["code"])) {
+            return $this->_json["code"];
+        }
+
+        return null;
     }
 
     public function getRaw()
@@ -47,10 +73,14 @@ class ImageshopSelection extends BaseObject
 
     public function getDocumentId()
     {
-        return $this->_json["documentId"];
+        if (isset($this->_json["documentId"])) {
+            return $this->_json["documentId"];
+        }
+
+        return null;
     }
 
-    protected function getLang($lang)
+    protected function getLang($lang = null)
     {
         if (!in_array($lang, ["no", "en", "sv"])) {
             $lang = "no";
@@ -59,28 +89,60 @@ class ImageshopSelection extends BaseObject
         return $lang;
     }
 
-    public function getTags($lang)
+    public function getTags($lang = null)
     {
-        return explode(" ", $this->_json["text"][$this->getLang($lang)]["tags"]);
+        $tags = $this->getTextInfo("tags", $lang);
+
+        if (is_string($tags)) {
+            return explode(" ", $tags);
+        }
+
+        // No tags
+        return [];
     }
 
-    public function getTitle($lang)
+    public function getTitle($lang = null)
     {
-        return $this->_json["text"][$this->getLang($lang)]["title"];
+        return $this->getTextInfo("title", $lang);
     }
 
-    public function getDescription($lang)
+    public function getDescription($lang = null)
     {
-        return $this->_json["text"][$this->getLang($lang)]["description"];
+        return $this->getTextInfo("description", $lang);;
     }
 
-    public function getRights($lang)
+    public function getRights($lang = null)
     {
-        return $this->_json["text"][$this->getLang($lang)]["rights"];
+        return $this->getTextInfo("rights", $lang);
     }
 
-    public function getCredits($lang)
+    public function getCredits($lang = null)
     {
-        return $this->_json["text"][$this->getLang($lang)]["credits"];
+        return $this->getTextInfo("credits", $lang);;
+    }
+
+    protected function getTextInfo($key, $lang = null)
+    {
+        $lang = $this->getLang($lang);
+
+        if (!isset ($this->_json["text"][$lang])) {
+            return null;
+        }
+
+        if (!isset ($this->_json["text"][$lang][$key])) {
+            return null;
+        }
+
+        return $this->_json["text"][$lang][$key];
+    }
+
+    /**
+     * Returns the object’s serialized value.
+     *
+     * @return mixed The serialized value
+     */
+    public function serialize()
+    {
+        return json_encode($this->_json);
     }
 }
