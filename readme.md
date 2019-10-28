@@ -1,13 +1,14 @@
 # Imageshop Field for Craft CMS
 
-This plugin uses Imageshop's image selector (in a popup) and saves the result as a field for
-developers to pull out in templates, it includes a simple preview of the selected image, 
-works well with [Imager](https://github.com/aelvan/Imager-Craft), check the example section 
-for information on how to use this plugin..
+This plugin integrates [Imageshop](https://www.imageshop.no/) with Craft CMS by exposing 
+their image selector as a popup that saves the selected image data in a field so the selection 
+can be used in twig templates.
+
  
  
  ![Screenshot](./screenshot.png)
-#
+
+
 # Installation
 
 To install the plugin, follow these instructions.
