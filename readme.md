@@ -7,13 +7,37 @@ for information on how to use this plugin..
  
  
  ![Screenshot](./screenshot.png)
+#
+# Installation
+
+To install the plugin, follow these instructions.
+
+1. Open your terminal and go to your Craft project:
+
+```` 
+cd /path/to/project
+````
+
+2. Then tell Composer to load the plugin:
+
+```
+composer require guilty/craft-imageshop-field
+```
+        
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button for 'Imageshop'.
+
+OR do it via the command line
+
+```
+php craft install/plugin craft-imageshop-field
+```
+         
+
+4. You will now have "Imageshop selector" available as a choice in the Field type dropdown on the field creation page.
 
  
- 
- 
- 
+  
 ## Templating:
-
 
 ### Using Imager
 
