@@ -52,16 +52,18 @@ class ImageShopField extends Field
 
         $url = sprintf("%s?%s", "https://client.imageshop.no/insertimage2.aspx", trim($query, "&"));
 
+        $random = uniqid();
 
         $view = Craft::$app->getView();
         $view->registerAssetBundle(ImageshopAssetBundle::class);
-        $view->registerJs("new Craft.ImageshopField('imageshop-{$this->id}', '{$url}');");
+        $view->registerJs("new Craft.ImageshopField('imageshop-{$random}', '{$url}');");
 
 
         return $view->renderTemplate('imageshop-field/input', [
             'name' => $this->handle,
             'value' => $value,
             'field' => $this,
+            'random' => $random,
         ]);
     }
 
