@@ -25,7 +25,7 @@ class ImageShopField extends Field
 
     public static function displayName(): string
     {
-        return "Imageshop Selector";
+        return "Imageshop";
     }
 
     public function getContentColumnType(): string
