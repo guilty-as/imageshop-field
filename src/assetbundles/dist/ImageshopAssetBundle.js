@@ -61,7 +61,9 @@
 
 
             updatePreview: function (data) {
-                var url = JSON.parse(data).image.file;
+                var json = JSON.parse(data);
+                var url = json.image.file;
+                var label = json.text.no.title || json.code;
 
                 this.removePreview();
 
@@ -71,7 +73,7 @@
                 }));
 
                 var labelDiv = $("<div class='imageshop-label'>");
-                var inner1 = $("<div class='label'><span class='title'>" + url + "</span></div>");
+                var inner1 = $("<div class='label'><span class='title'>" + label + "</span></div>");
                 var inner2 = $("<a class='delete icon imageshop-remove' title='Remove'></a>");
                 this.addListener(inner2, "click", "removeSelection");
 

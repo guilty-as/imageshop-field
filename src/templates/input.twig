@@ -9,7 +9,7 @@
                 <img src="{{ value.image }}" width="100">
 
                 <div class="imageshop-label">
-                    <div class="label"><span class="title">{{ value.image }}</span></div>
+                    <div class="label"><span class="title">{{ value.title ?? value.code }}</span></div>
                     <a class="delete icon imageshop-remove" title="Remove"></a>
                 </div>
             {% endif %}
