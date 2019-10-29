@@ -47,7 +47,7 @@ class ImageShopField extends Field
             "SHOWCROPDIALOGUE" => (string)$this->showCropDialogue,
             "IMAGESHOPSIZES" => "Normal;1920x0",
             "FORMAT" => "json",
-            "SETDOMAIN" => "false", // Unknown, ask thomas what it does
+            "SETDOMAIN" => "false",
         ]);
 
         $url = sprintf("%s?%s", "https://client.imageshop.no/insertimage2.aspx", trim($query, "&"));
@@ -58,7 +58,7 @@ class ImageShopField extends Field
         $view->registerJs("new Craft.ImageshopField('imageshop-{$this->id}', '{$url}');");
 
 
-        return $view->renderTemplate('craft-imageshop-field/input', [
+        return $view->renderTemplate('imageshop-field/input', [
             'name' => $this->handle,
             'value' => $value,
             'field' => $this,
@@ -68,7 +68,7 @@ class ImageShopField extends Field
 
     public function getSettingsHtml()
     {
-        return Craft::$app->getView()->renderTemplate('craft-imageshop-field/field', [
+        return Craft::$app->getView()->renderTemplate('imageshop-field/field', [
             'field' => $this,
             'cultures' => [
                 [
