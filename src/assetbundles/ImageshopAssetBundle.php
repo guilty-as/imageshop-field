@@ -21,7 +21,7 @@ class ImageshopAssetBundle extends AssetBundle
         ];
 
         $this->js = [
-            'ImageshopAssetbundle.js',
+            'ImageshopAssetBundle.js',
         ];
 
         parent::init();
