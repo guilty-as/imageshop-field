@@ -41,7 +41,7 @@ class ImageShopField extends Field
 
     public function getInputHtml($value, ElementInterface $element = null): string
     {
-        $query = build_query_string([
+        $query = http_build_query([
             "IMAGESHOPTOKEN" => (string)$this->token,
             "SHOWSIZEDIALOGUE" => (string)$this->showSizeDialogue,
             "SHOWCROPDIALOGUE" => (string)$this->showCropDialogue,
