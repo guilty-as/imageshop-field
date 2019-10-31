@@ -13,28 +13,29 @@ can be used in twig templates.
 
 To install the plugin, follow these instructions.
 
-1. Open your terminal and go to your Craft project:
+- Open your terminal and go to your Craft project:
 
 ```` 
 cd /path/to/project
 ````
 
-2. Then tell Composer to load the plugin:
+- Then tell Composer to load the plugin:
 
 ```
 composer require guilty/imageshop-field
 ```
         
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for 'Imageshop'.
+- In the Control Panel, go to Settings → Plugins and click the “Install” button for 'Imageshop'.
 
 OR do it via the command line
 
 ```
 php craft install/plugin imageshop-field
 ```
-         
 
-4. You will now have "Imageshop selector" available as a choice in the Field type dropdown on the field creation page.
+- On the settings page, fill out the token and private key field to start using the plugin.
+
+- You will now have access to the "Imageshop field" in the Field type dropdown on the field creation page.
 
  
   

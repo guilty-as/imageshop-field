@@ -33,7 +33,12 @@
     "extra": {
         "handle": "imageshop-field",
         "name": "Imageshop",
-        "class": "Guilty\\Imageshop\\Plugin",
-        "documentationUrl": "https://github.com/guilty-as/imageshop-field/blob/master/README.md"
+        "class": "Guilty\\Imageshop\\Imageshop",
+        "documentationUrl": "https://github.com/guilty-as/imageshop-field/blob/master/README.md",
+        "components": {
+            "soap": "Guilty\\Imageshop\\services\\Soap"
+        },
+        "hasCpSettings": true,
+        "hasCpSection": false
     }
 }
