@@ -1,0 +1,37 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    label: 'Token'|t,
+    instructions: 'Imageshop token',
+    id: 'token',
+    name: 'token',
+    value: settings['token']})
+}}
+
+{{ forms.textField({
+    label: 'Key'|t,
+    instructions: 'Imageshop private key',
+    id: 'key',
+    name: 'key',
+    value: settings['key']})
+}}
+
+{% set languages = [
+  {
+    label: 'Norwegian'|t,
+    value: 'no'
+  }, {
+    label: 'English'|t,
+    value: 'en'
+  }
+] %}
+
+{{ forms.selectField({
+    label: 'Language'|t,
+    id: 'language',
+    name: 'language',
+    options: languages,
+    value: settings['language']})
+}}

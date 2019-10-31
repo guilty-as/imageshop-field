@@ -5,12 +5,14 @@ namespace Guilty\Imageshop\Fields;
 use Craft;
 use yii\db\Schema;
 use craft\base\Field;
+use Guilty\Imageshop\Imageshop;
 use craft\base\ElementInterface;
 use Guilty\Imageshop\AssetBundles\ImageshopAssetBundle;
 
 class ImageShopField extends Field
 {
     public $token = "";
+    public $key = "";
     public $culture = "en-US";
     public $showCropDialogue = false;
     public $showSizeDialogue = false;
@@ -36,10 +38,15 @@ class ImageShopField extends Field
         return ImageshopSelection::class . "|null";
     }
 
+    private function getTempToken() {
+        $token = Imageshop::$plugin->soap->getTemporaryToken();
+        return $token->GetTemporaryTokenResponse->GetTemporaryTokenResult;
+    }
+
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         $query = http_build_query([
-            "IMAGESHOPTOKEN" => (string)$this->token,
+            "IMAGESHOPTOKEN" => (string)$this->getTempToken(),
             "SHOWSIZEDIALOGUE" => (string)$this->showSizeDialogue,
             "SHOWCROPDIALOGUE" => (string)$this->showCropDialogue,
             "IMAGESHOPSIZES" => "Normal;1920x0",
@@ -70,8 +77,12 @@ class ImageShopField extends Field
 
     public function getSettingsHtml()
     {
+        $settings = Imageshop::$plugin->settings;
+
         return Craft::$app->getView()->renderTemplate('imageshop-field/field', [
             'field' => $this,
+            'token' => $settings->token,
+            'key' => $settings->key,
             'cultures' => [
                 [
                     "label" => "English",
