@@ -49,11 +49,12 @@ class ImageShopField extends Field
 
         $url = sprintf("%s?%s", "https://client.imageshop.no/insertimage2.aspx", trim($query, "&"));
 
-        // Reformat the input name into something that looks more like an ID
-        $id = \Craft::$app->view->formatInputId($value);
-
         // Figure out what that ID is going to look like once it has been namespaced
-        $namespacedId = \Craft::$app->view->namespaceInputId($id);
+        $namespacedId = Craft::$app->view->namespaceInputId('');
+
+        if ($namespacedId == 'fields-') {
+            $namespacedId = 'fields-' . uniqid() . '-';
+        }
 
         $view = Craft::$app->getView();
         $view->registerAssetBundle(ImageshopAssetBundle::class);
