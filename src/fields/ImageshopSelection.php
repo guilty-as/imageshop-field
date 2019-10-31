@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Guilty\Imageshop\Fields;
 
-
-use craft\base\Serializable;
 use yii\base\BaseObject;
+use craft\base\Serializable;
 
 class ImageshopSelection extends BaseObject implements Serializable
 {
@@ -160,7 +158,6 @@ class ImageshopSelection extends BaseObject implements Serializable
     {
         return json_encode($this->_json);
     }
-
 
     public function __toString()
     {

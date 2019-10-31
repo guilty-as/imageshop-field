@@ -11,9 +11,8 @@
             $popupWindow: null,
             $open: false,
 
-            init: function (containerId, url) {
-
-                this.$container = $('[data-id="' + containerId + '"]');
+            init: function (handle, url) {
+                this.$container = $('[data-id="' + handle + '"]');
                 this.$url = url;
                 this.$trigger = this.$container.find(".imageshop-trigger");
                 this.$hiddenInput = this.$container.find(".imageshop-value");
@@ -34,7 +33,6 @@
                 }.bind(this), false);
             },
 
-
             removeSelection: function () {
                 this.$hiddenInput.val(null);
                 $("img", this.$previewInput).remove();
@@ -49,6 +47,7 @@
             showPopup: function (ev) {
                 ev.preventDefault();
                 this.$open = true;
+
                 // Sensible defaults
                 var width = 950;
                 var height = 650;
@@ -58,7 +57,6 @@
                 var settings = 'height=' + height + ',width=' + width + ',top=' + topPosition + ',left=' + leftPosition + ',resizable';
                 this.$popupWindow = window.open(this.$url, "imageshop", settings);
             },
-
 
             updatePreview: function (data) {
                 var json = JSON.parse(data);

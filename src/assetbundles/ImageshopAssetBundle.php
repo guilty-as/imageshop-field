@@ -2,9 +2,8 @@
 
 namespace Guilty\Imageshop\AssetBundles;
 
-
-use craft\helpers\FileHelper;
 use craft\web\AssetBundle;
+use craft\helpers\FileHelper;
 use craft\web\assets\cp\CpAsset;
 
 class ImageshopAssetBundle extends AssetBundle

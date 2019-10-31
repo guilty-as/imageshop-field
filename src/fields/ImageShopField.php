@@ -3,10 +3,10 @@
 namespace Guilty\Imageshop\Fields;
 
 use Craft;
-use craft\base\ElementInterface;
-use craft\base\Field;
-use Guilty\Imageshop\AssetBundles\ImageshopAssetBundle;
 use yii\db\Schema;
+use craft\base\Field;
+use craft\base\ElementInterface;
+use Guilty\Imageshop\AssetBundles\ImageshopAssetBundle;
 
 class ImageShopField extends Field
 {
@@ -16,12 +16,10 @@ class ImageShopField extends Field
     public $showSizeDialogue = false;
     public $buttonText = "Velg bilde";
 
-
     public function normalizeValue($value, ElementInterface $element = null)
     {
         return new ImageshopSelection($value);
     }
-
 
     public static function displayName(): string
     {
@@ -38,7 +36,6 @@ class ImageShopField extends Field
         return ImageshopSelection::class . "|null";
     }
 
-
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         $query = http_build_query([
@@ -52,21 +49,23 @@ class ImageShopField extends Field
 
         $url = sprintf("%s?%s", "https://client.imageshop.no/insertimage2.aspx", trim($query, "&"));
 
-        $random = uniqid();
+        // Reformat the input name into something that looks more like an ID
+        $id = \Craft::$app->view->formatInputId($value);
+
+        // Figure out what that ID is going to look like once it has been namespaced
+        $namespacedId = \Craft::$app->view->namespaceInputId($id);
 
         $view = Craft::$app->getView();
         $view->registerAssetBundle(ImageshopAssetBundle::class);
-        $view->registerJs("new Craft.ImageshopField('imageshop-{$random}', '{$url}');");
-
+        $view->registerJs("new Craft.ImageshopField('{$namespacedId}imageshop', '{$url}');");
 
         return $view->renderTemplate('imageshop-field/input', [
             'name' => $this->handle,
             'value' => $value,
             'field' => $this,
-            'random' => $random,
+            'namespaced' => $namespacedId,
         ]);
     }
-
 
     public function getSettingsHtml()
     {
