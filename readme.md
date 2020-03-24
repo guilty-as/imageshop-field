@@ -1,6 +1,6 @@
 # Imageshop Field for Craft CMS
 
-This plugin integrates [Imageshop](https://www.imageshop.no/) with Craft CMS by exposing 
+This plugin integrates [Imageshop Digital Asset Management system](https://www.imageshop.org) with Craft CMS by exposing 
 their image selector as a popup that saves the selected image data in a field so the selection 
 can be used in twig templates.
 
