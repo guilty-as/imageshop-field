@@ -57,7 +57,8 @@ class ImageShopField extends Field
         $url = sprintf("%s?%s", "https://client.imageshop.no/insertimage2.aspx", trim($query, "&"));
 
         // Figure out what that ID is going to look like once it has been namespaced
-        $namespacedId = Craft::$app->view->namespaceInputId('');
+        $id = Craft::$app->getView()->formatInputId($this->handle);
+        $namespacedId = Craft::$app->getView()->namespaceInputId($id);
 
         if ($namespacedId == 'fields-') {
             $namespacedId = 'fields-' . uniqid() . '-';
@@ -67,7 +68,7 @@ class ImageShopField extends Field
         $view->registerAssetBundle(ImageshopAssetBundle::class);
         $view->registerJs("new Craft.ImageshopField('{$namespacedId}imageshop', '{$url}');");
 
-        return $view->renderTemplate('imageshop-field/input', [
+        return $view->renderTemplate('imageshop-field/Input', [
             'name' => $this->handle,
             'value' => $value,
             'field' => $this,
@@ -79,7 +80,7 @@ class ImageShopField extends Field
     {
         $settings = Imageshop::$plugin->settings;
 
-        return Craft::$app->getView()->renderTemplate('imageshop-field/field', [
+        return Craft::$app->getView()->renderTemplate('imageshop-field/Field', [
             'field' => $this,
             'token' => $settings->token,
             'key' => $settings->key,

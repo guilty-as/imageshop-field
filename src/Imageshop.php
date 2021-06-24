@@ -3,7 +3,7 @@
 namespace Guilty\Imageshop;
 
 use Craft;
-use Guilty\Imageshop\models\Settings;
+use Guilty\Imageshop\Models\Settings;
 use yii\base\Event;
 use craft\base\Plugin;
 use craft\services\Fields;
@@ -57,7 +57,7 @@ class Imageshop extends Plugin
     protected function settingsHtml(): string
     {
         return Craft::$app->view->renderTemplate(
-            'imageshop-field/settings',
+            'imageshop-field/Settings',
             [
                 'settings' => $this->getSettings()
             ]

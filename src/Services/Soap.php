@@ -1,6 +1,6 @@
 <?php
 
-namespace Guilty\Imageshop\services;
+namespace Guilty\Imageshop\Services;
 
 use Craft;
 use craft\base\Component;

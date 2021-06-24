@@ -1,6 +1,6 @@
 <?php
 
-namespace Guilty\Imageshop\models;
+namespace Guilty\Imageshop\Models;
 
 use craft\base\Model;
 

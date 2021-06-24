@@ -36,7 +36,7 @@
         "class": "Guilty\\Imageshop\\Imageshop",
         "documentationUrl": "https://github.com/guilty-as/imageshop-field/blob/master/README.md",
         "components": {
-            "soap": "Guilty\\Imageshop\\services\\Soap"
+            "soap": "Guilty\\Imageshop\\Services\\Soap"
         },
         "hasCpSettings": true,
         "hasCpSection": false
