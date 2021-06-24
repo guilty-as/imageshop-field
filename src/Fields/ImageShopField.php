@@ -68,7 +68,7 @@ class ImageShopField extends Field
         $view->registerAssetBundle(ImageshopAssetBundle::class);
         $view->registerJs("new Craft.ImageshopField('{$namespacedId}imageshop', '{$url}');");
 
-        return $view->renderTemplate('imageshop-field/input', [
+        return $view->renderTemplate('imageshop-field/templates/input', [
             'name' => $this->handle,
             'value' => $value,
             'field' => $this,
@@ -80,7 +80,7 @@ class ImageShopField extends Field
     {
         $settings = Imageshop::$plugin->settings;
 
-        return Craft::$app->getView()->renderTemplate('imageshop-field/field', [
+        return Craft::$app->getView()->renderTemplate('imageshop-field/templates/field', [
             'field' => $this,
             'token' => $settings->token,
             'key' => $settings->key,
