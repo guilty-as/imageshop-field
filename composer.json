@@ -1,7 +1,7 @@
 {
     "name": "guilty/imageshop-field",
     "description": "Integrates the Imageshop file picker into Craft CMS",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "type": "craft-plugin",
     "keywords": [
         "imageshop",
