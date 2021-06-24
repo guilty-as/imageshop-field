@@ -57,7 +57,7 @@ class Imageshop extends Plugin
     protected function settingsHtml(): string
     {
         return Craft::$app->view->renderTemplate(
-            'imageshop-field/Settings',
+            'imageshop-field/settings',
             [
                 'settings' => $this->getSettings()
             ]
